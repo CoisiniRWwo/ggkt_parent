@@ -30,7 +30,7 @@ public class UserLoginController {
         Map<String, Object> map = new HashMap<>();
         map.put("roles","[admin]");
         map.put("name","admin");
-        map.put("avatar","https://oss.aliyuncs.com/aliyun_id_photo_bucket/default_handsome.jpg");
+        map.put("avatar","https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
         return Result.ok(map);
     }
 }
