@@ -56,6 +56,35 @@ export const constantRoutes = [
   },
 
   {
+    path: '/vod',
+    component: Layout,
+    redirect: '/vod/teacher/list',
+    name: 'vod',
+    meta: { title: '点播管理', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'teacher/list',
+        name: 'TeacherList',
+        component: () => import('@/views/vod/teacher/list'),
+        meta: { title: '讲师列表', icon: 'table' }
+      },
+      {
+        path: 'teacher/create',
+        name: 'TeacherCreate',
+        component: () => import('@/views/vod/teacher/form'),
+        meta: { title: '添加讲师', icon: 'tree' }
+      },
+      {
+        path: 'teacher/edit/:id',
+        name: 'TeacherEdit',
+        component: () => import('@/views/vod/teacher/form'),
+        meta: { title: '编辑讲师' },
+        hidden: true
+      }
+    ]
+  },
+
+  {
     path: '/example',
     component: Layout,
     redirect: '/example/table',
