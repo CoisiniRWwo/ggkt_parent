@@ -40,11 +40,11 @@ public class TeacherController {
     @ApiOperation("所有讲师列表")
     @GetMapping("findAll")
     public Result findAll() {
-        try {
-            int a = 10/0;
-        } catch (Exception e) {
-            throw new GgktException(201,"执行自定义异常GgktException");
-        }
+//        try {
+//            int a = 10/0;
+//        } catch (Exception e) {
+//            throw new GgktException(201,"执行自定义异常GgktException");
+//        }
         List<Teacher> list = teacherService.list();
         return Result.ok(list).message("查询数据成功");
     }
