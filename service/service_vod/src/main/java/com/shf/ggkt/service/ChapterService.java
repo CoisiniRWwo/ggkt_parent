@@ -2,6 +2,9 @@ package com.shf.ggkt.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.shf.ggkt.model.vod.Chapter;
+import com.shf.ggkt.vo.vod.ChapterVo;
+
+import java.util.List;
 
 /**
 * @author SHF
@@ -10,4 +13,7 @@ import com.shf.ggkt.model.vod.Chapter;
 */
 public interface ChapterService extends IService<Chapter> {
 
+    List<ChapterVo> getNestedTreeList(Long courseId);
+
+    void removeChapterByCourseId(Long id);
 }

@@ -7,18 +7,17 @@ import com.shf.ggkt.model.vod.Course;
 import com.shf.ggkt.model.vod.CourseDescription;
 import com.shf.ggkt.model.vod.Subject;
 import com.shf.ggkt.model.vod.Teacher;
-import com.shf.ggkt.service.CourseDescriptionService;
-import com.shf.ggkt.service.CourseService;
+import com.shf.ggkt.service.*;
 import com.shf.ggkt.mapper.CourseMapper;
-import com.shf.ggkt.service.SubjectService;
-import com.shf.ggkt.service.TeacherService;
 import com.shf.ggkt.vo.vod.CourseFormVo;
+import com.shf.ggkt.vo.vod.CoursePublishVo;
 import com.shf.ggkt.vo.vod.CourseQueryVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +39,12 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course>
 
     @Autowired
     private CourseDescriptionService courseDescriptionService;
+
+    @Autowired
+    private VideoService videoService;
+
+    @Autowired
+    private ChapterService chapterService;
 
     //课程列表
     @Override
@@ -98,6 +103,67 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course>
 
         //返回课程id
         return course.getId();
+    }
+
+    //根据id获取课程信息
+    @Override
+    public CourseFormVo getCourseFormVoById(Long id) {
+        //从course表中取数据
+        Course course = baseMapper.selectById(id);
+        if(course == null){
+            return null;
+        }
+        //从course_description表中取数据
+        CourseDescription courseDescription = courseDescriptionService.getById(id);
+        //创建courseInfoForm对象
+        CourseFormVo courseFormVo = new CourseFormVo();
+        BeanUtils.copyProperties(course, courseFormVo);
+        if(courseDescription != null){
+            courseFormVo.setDescription(courseDescription.getDescription());
+        }
+        return courseFormVo;
+    }
+
+    //根据id修改课程信息
+    @Override
+    public void updateCourseById(CourseFormVo courseFormVo) {
+        //修改课程基本信息
+        Course course = new Course();
+        BeanUtils.copyProperties(courseFormVo, course);
+        baseMapper.updateById(course);
+        //修改课程详情信息
+        CourseDescription courseDescription = courseDescriptionService.getById(course.getId());
+        courseDescription.setDescription(courseFormVo.getDescription());
+        courseDescription.setId(course.getId());
+        courseDescriptionService.updateById(courseDescription);
+    }
+
+    //根据id获取课程发布信息
+    @Override
+    public CoursePublishVo getCoursePublishVo(Long id) {
+        return baseMapper.selectCoursePublishVoById(id);
+    }
+
+    //根据id发布课程
+    @Override
+    public void publishCourseById(Long id) {
+        Course course = new Course();
+        course.setId(id);
+        course.setPublishTime(new Date());
+        course.setStatus(1);
+        baseMapper.updateById(course);
+    }
+
+    @Override
+    public void removeCourseById(Long id) {
+        //根据课程id删除小节
+        videoService.removeVideoByCourseId(id);
+        //根据课程id删除章节
+        chapterService.removeChapterByCourseId(id);
+        //根据课程id删除描述
+        courseDescriptionService.removeById(id);
+        //根据课程id删除课程
+        baseMapper.deleteById(id);
     }
 
     //获取讲师和分类名称

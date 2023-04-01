@@ -1,5 +1,6 @@
 package com.shf.ggkt.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.shf.ggkt.model.vod.Video;
 import com.shf.ggkt.service.VideoService;
@@ -15,6 +16,13 @@ import org.springframework.stereotype.Service;
 public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video>
     implements VideoService{
 
+    //根据课程id删除小节
+    @Override
+    public void removeVideoByCourseId(Long id) {
+        QueryWrapper<Video> wrapper = new QueryWrapper<>();
+        wrapper.eq("course_id",id);
+        baseMapper.delete(wrapper);
+    }
 }
 
 

@@ -5,6 +5,7 @@ import com.shf.ggkt.model.vod.Course;
 import com.shf.ggkt.result.Result;
 import com.shf.ggkt.service.CourseService;
 import com.shf.ggkt.vo.vod.CourseFormVo;
+import com.shf.ggkt.vo.vod.CoursePublishVo;
 import com.shf.ggkt.vo.vod.CourseQueryVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -47,5 +48,47 @@ public class CourseController {
     public Result save(@RequestBody CourseFormVo courseFormVo) {
         Long courseId = courseService.saveCourseInfo(courseFormVo);
         return Result.ok(courseId);
+    }
+
+    //根据id获取课程信息
+    @ApiOperation(value = "获取")
+    @GetMapping("get/{id}")
+    public Result get(@PathVariable Long id) {
+        CourseFormVo course = courseService.getCourseFormVoById(id);
+        return Result.ok(course);
+    }
+
+    //修改课程信息
+    @ApiOperation(value = "修改")
+    @PostMapping("update")
+    public Result updateById(@RequestBody CourseFormVo courseFormVo) {
+        courseService.updateCourseById(courseFormVo);
+        return Result.ok(courseFormVo.getId());
+    }
+
+    @ApiOperation("根据id获取课程发布信息")
+    @GetMapping("getCoursePublishVo/{id}")
+    public Result getCoursePublishVoById(
+            @ApiParam(value = "课程ID", required = true)
+            @PathVariable Long id){
+
+        CoursePublishVo coursePublishVo = courseService.getCoursePublishVo(id);
+        return Result.ok(coursePublishVo);
+    }
+
+    @ApiOperation("根据id发布课程")
+    @PutMapping("publishCourseById/{id}")
+    public Result publishCourseById(
+            @ApiParam(value = "课程ID", required = true)
+            @PathVariable Long id){
+        courseService.publishCourseById(id);
+        return Result.ok(null);
+    }
+
+    @ApiOperation(value = "删除课程")
+    @DeleteMapping("remove/{id}")
+    public Result remove(@PathVariable Long id) {
+        courseService.removeCourseById(id);
+        return Result.ok(null);
     }
 }

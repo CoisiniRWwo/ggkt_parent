@@ -2,6 +2,7 @@ package com.shf.ggkt.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.shf.ggkt.model.vod.Course;
+import com.shf.ggkt.vo.vod.CoursePublishVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface CourseMapper extends BaseMapper<Course> {
-
+    CoursePublishVo selectCoursePublishVoById(Long id);
 }
 
 

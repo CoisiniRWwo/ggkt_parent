@@ -33,6 +33,7 @@ spring:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath*:/mapper/*.xml
 
 #不同的服务器，地址不同
 tencent:
@@ -43,3 +44,4 @@ tencent:
       region: ap-nanjing
       secret-id: AKIDnW3RefWQNB4rV0NZbcTccQ4Vl3HVeoVH
       secretary: sZ2Phqoa8XloeT8brvsshZKvMk4FH7j8
+
