@@ -22,8 +22,8 @@ import java.util.Map;
  */
 @Api(tags = "课程管理接口")
 @RestController
-@RequestMapping(value="/admin/vod/course")
-@CrossOrigin
+@RequestMapping(value = "/admin/vod/course")
+//@CrossOrigin
 public class CourseController {
     @Autowired
     private CourseService courseService;
@@ -38,7 +38,7 @@ public class CourseController {
             @ApiParam(name = "courseVo", value = "查询对象", required = false)
             CourseQueryVo courseQueryVo) {
         Page<Course> pageParam = new Page<>(page, limit);
-        Map<String,Object> map = courseService.findPage(pageParam, courseQueryVo);
+        Map<String, Object> map = courseService.findPage(pageParam, courseQueryVo);
         return Result.ok(map);
     }
 
@@ -70,7 +70,7 @@ public class CourseController {
     @GetMapping("getCoursePublishVo/{id}")
     public Result getCoursePublishVoById(
             @ApiParam(value = "课程ID", required = true)
-            @PathVariable Long id){
+            @PathVariable Long id) {
 
         CoursePublishVo coursePublishVo = courseService.getCoursePublishVo(id);
         return Result.ok(coursePublishVo);
@@ -80,7 +80,7 @@ public class CourseController {
     @PutMapping("publishCourseById/{id}")
     public Result publishCourseById(
             @ApiParam(value = "课程ID", required = true)
-            @PathVariable Long id){
+            @PathVariable Long id) {
         courseService.publishCourseById(id);
         return Result.ok(null);
     }

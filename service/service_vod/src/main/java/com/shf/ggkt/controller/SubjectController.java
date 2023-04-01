@@ -19,8 +19,8 @@ import java.util.List;
  */
 @Api(tags = "课程分类管理")
 @RestController
-@RequestMapping(value="/admin/vod/subject")
-@CrossOrigin
+@RequestMapping(value = "/admin/vod/subject")
+//@CrossOrigin
 public class SubjectController {
     @Autowired
     private SubjectService subjectService;
@@ -34,7 +34,7 @@ public class SubjectController {
         return Result.ok(list);
     }
 
-    @ApiOperation(value="课程分类导出")
+    @ApiOperation(value = "课程分类导出")
     @GetMapping(value = "/exportData")
     public void exportData(HttpServletResponse response) {
         subjectService.exportData(response);

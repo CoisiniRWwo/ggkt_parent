@@ -24,4 +24,22 @@
         leave_time,duration,create_time,
         update_time,is_deleted
     </sql>
+
+    <select id="findCount" resultType="com.shf.ggkt.vo.vod.VideoVisitorCountVo">
+        SELECT
+        DATE(join_time) AS joinTime,
+        COUNT(*) AS userCount
+        FROM video_visitor
+        <where>
+            <if test="startDate != null and startDate != ''">
+                AND DATE(join_time) >= #{startDate}
+            </if>
+            <if test="endDate != null and endDate != ''">
+                AND DATE(join_time) &lt;= #{endDate}
+            </if>
+            and course_id=#{courseId}
+        </where>
+        GROUP BY DATE(join_time)
+        ORDER BY DATE(join_time)
+    </select>
 </mapper>

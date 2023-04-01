@@ -2,6 +2,10 @@ package com.shf.ggkt.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.shf.ggkt.model.vod.VideoVisitor;
+import com.shf.ggkt.vo.vod.VideoVisitorCountVo;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
 * @author SHF
@@ -11,6 +15,9 @@ import com.shf.ggkt.model.vod.VideoVisitor;
 */
 public interface VideoVisitorMapper extends BaseMapper<VideoVisitor> {
 
+    List<VideoVisitorCountVo> findCount(@Param("courseId") Long courseId,
+                                        @Param("startDate") String startDate,
+                                        @Param("endDate") String endDate);
 }
 
 

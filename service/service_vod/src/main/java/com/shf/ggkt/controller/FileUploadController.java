@@ -17,11 +17,12 @@ import org.springframework.web.multipart.MultipartFile;
 @Api(tags = "文件上传接口")
 @RestController
 @RequestMapping("/admin/vod/file")
-@CrossOrigin
+//@CrossOrigin
 public class FileUploadController {
 
     @Autowired
     private FileService fileService;
+
     @ApiOperation(value = "文件上传")
     @PostMapping("upload")
     public Result upload(

@@ -17,8 +17,8 @@ import java.util.List;
  * @Project:ggkt_parent
  */
 @RestController
-@RequestMapping(value="/admin/vod/chapter")
-@CrossOrigin
+@RequestMapping(value = "/admin/vod/chapter")
+//@CrossOrigin
 public class ChapterController {
 
     @Autowired
@@ -29,7 +29,7 @@ public class ChapterController {
     @GetMapping("getNestedTreeList/{courseId}")
     public Result getNestedTreeList(
             @ApiParam(value = "课程ID", required = true)
-            @PathVariable Long courseId){
+            @PathVariable Long courseId) {
         List<ChapterVo> chapterVoList = chapterService.getNestedTreeList(courseId);
         return Result.ok(chapterVoList);
     }
