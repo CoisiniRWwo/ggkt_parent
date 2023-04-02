@@ -4,7 +4,6 @@ import com.qcloud.vod.VodUploadClient;
 import com.qcloud.vod.model.VodUploadRequest;
 import com.qcloud.vod.model.VodUploadResponse;
 import com.shf.ggkt.service.VodService;
-import com.shf.ggkt.utils.ConstantPropertiesUtil;
 import com.tencentcloudapi.common.Credential;
 import com.tencentcloudapi.common.exception.TencentCloudSDKException;
 import com.tencentcloudapi.vod.v20180717.VodClient;

@@ -2,8 +2,6 @@ package com.shf.ggkt.controller;
 
 import com.shf.ggkt.result.Result;
 import com.shf.ggkt.service.VodService;
-import com.shf.ggkt.utils.ConstantPropertiesUtil;
-import com.shf.ggkt.utils.Signature;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;

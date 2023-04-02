@@ -33,3 +33,14 @@ mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath*:/mapper/*.xml
+
+#公众号id和秘钥
+# 硅谷课堂微信公众平台appId
+wechat:
+  mpAppId: wxd1e7a6e9e1594b61
+  ## 硅谷课堂微信公众平台api秘钥
+  mpAppSecret: a3f8dab1bb994c01557c76f57430ecb6
+  # 授权回调获取用户信息接口地址
+  userInfoUrl: https://4e31i36306.yicp.fun/api/user/wechat/userInfo
+
+

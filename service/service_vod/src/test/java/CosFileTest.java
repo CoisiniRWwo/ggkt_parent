@@ -1,7 +1,4 @@
-import com.shf.ggkt.utils.ConstantPropertiesUtil;
-import org.junit.Assert;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Value;
 
 /**
  * @Author:Su HangFei

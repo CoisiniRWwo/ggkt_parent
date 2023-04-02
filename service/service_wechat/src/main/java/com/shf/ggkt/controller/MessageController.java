@@ -1,11 +1,9 @@
 package com.shf.ggkt.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.shf.ggkt.result.Result;
 import com.shf.ggkt.service.MessageService;
 import com.shf.ggkt.utils.SHA1;
 import me.chanjar.weixin.common.error.WxErrorException;
-import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
